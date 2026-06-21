@@ -362,6 +362,7 @@ open class XMLEncoder {
                                    withRootKey rootKey: String? = nil,
                                    rootAttributes: [(key: String, value: String)]? = nil,
                                    header: XMLHeader? = nil,
+                                   stylesheet: XMLStylesheet? = nil,
                                    doctype: XMLDocumentType? = nil) throws -> Data
     {
         let encoder = XMLEncoderImplementation(options: options, nodeEncodings: [])
@@ -409,7 +410,8 @@ open class XMLEncoder {
         }
 
         return element.toXMLString(
-            with: header,
+            header: header,
+            stylesheet: stylesheet,
             doctype: doctype,
             escapedCharacters: (
                 elements: charactersEscapedInElements,
